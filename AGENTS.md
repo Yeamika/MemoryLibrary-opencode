@@ -35,7 +35,8 @@ AGENTS.md
 ## 活动边界
 
 - 默认只在记忆图书馆核心区工作：根 `AGENTS.md`、根 `README.md`、`WORKSPACE_MAP.md`、`.opencode/`。
-- `OpenSessionGateway/`、`Yeamika/`、`nextcloud-mcp-tool/`、`migration/` 属于子项目或外部工作区；除非任务明确要求，否则不要进入这些目录修改内容。
+- `OpenSessionGateway/`、`Yeamika/`、`nextcloud-mcp-tool/` 属于子项目或外部工作区；除非任务明确要求，否则不要进入这些目录修改内容。
+- `Yeamika/opencode/pr-reload/packages/opencode/migration/` 是 opencode 子项目的数据库迁移目录，按子项目内容处理。
 - `.config/`、`.tmp/`、`.opencode/artifacts/` 和根目录打包产物按本地运行态或临时产物处理。
 - 运行产物、打包文件、下载的 artifacts、测试输出等临时内容，默认统一放在根目录 `.tmp/`。
 - 如果任务需要跨出记忆图书馆核心区，应先说明将进入哪个目录、为什么需要进入，再继续执行。

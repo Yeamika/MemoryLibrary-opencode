@@ -29,6 +29,7 @@
 | `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
 | `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
 | child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |
+| `Yeamika/opencode/pr-reload/packages/opencode/migration/` | `Yeamika/opencode` child repo | child repo `AGENTS.md` 链 | opencode 数据库迁移目录 |
 | `.config/`、`.tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |
 
 ## 使用规则
