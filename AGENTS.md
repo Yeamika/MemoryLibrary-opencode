@@ -31,6 +31,13 @@ AGENTS.md
 - 结构、边界、流程、命名约定变化时，应同步更新对应作用域的 `AGENTS.md`。
 - 长说明与实例优先放 `.opencode/docx/`。
 
+## 活动边界
+
+- 默认只在记忆图书馆核心区工作：根 `AGENTS.md`、根 `README.md`、`WORKSPACE_MAP.md`、`.opencode/`。
+- `OpenSessionGateway/`、`Yeamika/`、`nextcloud-mcp-tool/`、`migration/` 属于子项目或外部工作区；除非任务明确要求，否则不要进入这些目录修改内容。
+- `.config/`、`.tmp/`、`.opencode/artifacts/` 和根目录打包产物属于本地运行态或临时产物；除非任务明确要求，否则不要把它们当作记忆文件维护对象。
+- 如果任务需要跨出记忆图书馆核心区，应先说明将进入哪个目录、为什么需要进入，再继续执行。
+
 ## `TASKS.md`
 
 - `TASKS.md` 用于当前目录的动态任务清单，不属于稳定记忆。

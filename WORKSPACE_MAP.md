@@ -13,6 +13,8 @@
 - `.opencode/docx/`
 - 需要保留的空目录占位（如 `.gitkeep`）
 
+其他仍然出现在 workspace 根目录的子项目目录、本地配置目录、运行态目录或打包产物，不属于根 meta repo 的维护主线。
+
 ## 记忆模型
 
 - 根 `AGENTS.md`：workspace 级记忆基线
@@ -27,7 +29,7 @@
 | `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
 | `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
 | child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |
-| `.config/`、`.workerspace/`、`tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |
+| `.config/`、`.tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |
 
 ## 使用规则
 

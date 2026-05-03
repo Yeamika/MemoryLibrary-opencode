@@ -33,8 +33,7 @@
 
 # Explicit local-only / separately-owned areas
 /.config/
-/.workerspace/
-/tmp/
+/.tmp/
 /OpenSessionGateway/
 /nextcloud-mcp-tool/
 /Yeamika/
