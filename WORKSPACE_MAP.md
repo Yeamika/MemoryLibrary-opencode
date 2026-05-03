@@ -1,69 +1,36 @@
 # Workspace Git / Memory Map
 
-This workspace uses a **root meta repo** plus multiple **child repos/worktrees**.
+这个文件用于说明：**哪个 repo 拥有哪个路径，以及该路径应读取哪条 `AGENTS.md` 记忆链**。
 
-## Root meta repo purpose
+## 根 meta repo 的职责
 
-The root git repo at `/workspace/OSG-Project/.git` is the workspace control plane.
-It tracks:
+根 repo 只跟踪 workspace 级记忆与 `.opencode/` 元资产，例如：
 
-- root `AGENTS.md` — workspace-wide memory baseline
-- root `README.md` — workspace topology and operator notes
-- `WORKSPACE_MAP.md` — repo ownership and memory routing
-- `.opencode/skills/` and `.opencode/tools/` — local OpenCode skill/tool definitions
-- `agent-skills/` — prompt and skill experiments that belong to the workspace itself
+- 根 `AGENTS.md`
+- 根 `README.md`
+- `WORKSPACE_MAP.md`
+- `.opencode/AGENTS.md`
+- `.opencode/docx/`
+- 需要保留的空目录占位（如 `.gitkeep`）
 
-It does **not** absorb child project source history.
+## 记忆模型
 
-## Memory model
+- 根 `AGENTS.md`：workspace 级记忆基线
+- 子目录 `AGENTS.md`：该子树的 scoped memory
+- 多层同时存在时，按父 → 子读取，越近越具体
 
-For this workspace, `AGENTS.md` files are memory files.
-
-- root `AGENTS.md` = workspace-level memory baseline
-- child `AGENTS.md` = scoped memory for that repo / directory subtree
-- when both exist, read from parent to child
-- the nearest relevant `AGENTS.md` carries the most specific local rules
-- use the git history of the repo that owns that `AGENTS.md`
-
-Do **not** duplicate a child repo's `AGENTS.md` into the root repo just to mirror history.
-
-## Ownership table
+## 通用归属表
 
 | Path | Git owner | Memory source | Notes |
 |---|---|---|---|
-| `/workspace/OSG-Project/` root docs | root meta repo | root `AGENTS.md` | workspace-level rules only |
-| `.opencode/skills/` | root meta repo | root `AGENTS.md` + skill files | local OpenCode skills |
-| `.opencode/tools/` | root meta repo | root `AGENTS.md` | local OpenCode tools if added later |
-| `agent-skills/` | root meta repo | root `AGENTS.md` | prompt / skill experiments |
-| `OpenSessionGateway/` | child repo | `OpenSessionGateway/**/AGENTS.md` chain | standalone project repo |
-| `nextcloud-mcp-tool/` | child repo | `nextcloud-mcp-tool/**/AGENTS.md` chain | standalone project repo |
-| `Yeamika/opencode/upstream/` | child repo | `upstream/**/AGENTS.md` chain | upstream opencode repo |
-| `Yeamika/opencode/local-yes/` | child repo | `local-yes/**/AGENTS.md` chain | local fork/work copy |
-| `Yeamika/opencode/pr-reload/` | child repo | `pr-reload/**/AGENTS.md` chain | main working repo for this branch |
-| `Yeamika/opencode/pr-attach-min/` | `pr-reload` worktree | `pr-attach-min/**/AGENTS.md` chain | linked worktree owned by `pr-reload` git dir |
-| `tmp/`, `.config/`, `.workerspace/` | local-only, ignored by root meta repo | n/a | runtime / secret / disposable state |
+| workspace root docs | root meta repo | root `AGENTS.md` | workspace 级规则与记忆 |
+| `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
+| `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
+| child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |
+| `.config/`、`.workerspace/`、`tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |
 
-## How to read memory history
+## 使用规则
 
-### Root memory
-
-```bash
-git -C /workspace/OSG-Project log --follow -- AGENTS.md
-git -C /workspace/OSG-Project show <commit>:AGENTS.md
-```
-
-### Child repo memory
-
-```bash
-git -C /workspace/OSG-Project/OpenSessionGateway log --follow -- doc/AGENTS.md
-git -C /workspace/OSG-Project/Yeamika/opencode/pr-reload log --follow -- packages/app/AGENTS.md
-git -C /workspace/OSG-Project/Yeamika/opencode/pr-attach-min log --follow -- packages/app/AGENTS.md
-```
-
-## Root repo guardrails
-
-- keep root history focused on workspace memory, docs, prompts, and local automation
-- do not track child repo source trees from the root repo
-- do not commit secrets or account config from `.config/`
-- keep disposable output in `tmp/` or other ignored paths
-- when a task belongs to a child repo, commit memory there instead of copying it upward
+- 不把子项目源码历史吸收到根 meta repo。
+- 需要了解某个路径的记忆时，先用本文件判断归属，再去读对应 repo 的 `AGENTS.md` 链。
+- 目录结构或 ownership 变化时，应同步更新本文件。

@@ -13,23 +13,23 @@
 !/README.md
 !/WORKSPACE_MAP.md
 
-# Workspace-local OpenCode skills/tools (but not runtime config or artifacts)
+# Workspace-local OpenCode meta files (but not runtime config or artifacts)
 !/.opencode/
 /.opencode/*
+!/.opencode/AGENTS.md
+!/.opencode/agent/
+!/.opencode/agent/**
+!/.opencode/docx/
+!/.opencode/docx/**
 !/.opencode/skills/
 !/.opencode/skills/**
 !/.opencode/tools/
 !/.opencode/tools/**
 
-# Prompt / skill experiments owned by this workspace
-!/agent-skills/
-!/agent-skills/**
-
 # Still ignore transient content inside tracked trees
+/.opencode/agent/**/.DS_Store
 /.opencode/skills/**/node_modules/
 /.opencode/skills/**/.DS_Store
-/agent-skills/**/node_modules/
-/agent-skills/**/.DS_Store
 
 # Explicit local-only / separately-owned areas
 /.config/

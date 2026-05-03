@@ -1,104 +1,35 @@
-# OSG Project Lab
+# Workspace Memory Library
 
-This workspace tracks the current maintainer + osg-test lab topology.
+这个仓库是一个通用的 workspace meta repo，用于存放工作区级记忆文件与 `.opencode/` 元资产。
 
-## Primary Test Container
+## 目标
 
-- container: `CONNT-osg-test`
-- hostname: `osg-test-main`
-- SSH alias inside Docker network: `osg-test`
-- SSH port: `22`
-- user: `node`
-- password: `ConntTest@2026!`
+- 维护根级 `AGENTS.md` 记忆
+- 维护 `WORKSPACE_MAP.md` 的路径 / repo / memory 归属说明
+- 维护 `.opencode/` 下的 OpenCode 元目录与客户端文档
 
-Use `CONNT-osg-test` as the main test container.
-Do not modify the maintainer/local host environment for setup, installs, or runtime experiments.
-Package installs, ad-hoc tools, runtime validation, and environment experiments must happen inside the test containers.
+## 典型结构
 
-## Current Test Containers
-
-- `CONNT-osg-test`
-  - hostname: `osg-test-main`
-  - SSH alias: `osg-test`
-  - OpenCode port: `9521`
-- `CONNT-osg-test-2`
-  - hostname: `osg-test-2`
-  - SSH alias: `osg-test-2`
-  - OpenCode port: `9521`
-- `CONNT-osg-test-3`
-  - hostname: `osg-test-3`
-  - SSH alias: `osg-test-3`
-  - OpenCode port: `9521`
-
-All three test containers are attached to the same Docker network and can reach each other directly by name.
-No host port mapping is used for SSH or OpenCode.
-
-## Access From Maintainer
-
-From `opencode-maintainer-opencode-1`:
-
-```bash
-ssh node@osg-test
-ssh node@osg-test-2
-ssh node@osg-test-3
+```text
+/
+├── AGENTS.md
+├── README.md
+├── WORKSPACE_MAP.md
+└── .opencode/
+    ├── AGENTS.md
+    └── docx/
 ```
 
-Enter the password above when prompted.
+## 不应该放什么
 
-## Template Compose
+- 子项目产品源码
+- 本地凭据、密码、token
+- 临时运行垃圾与构建产物
+- 只适用于单个私有环境的接线配置
 
-- compose file: `D:\Docker\Composes\OSG-Project\compose.yml`
-- this file is generic and only defines one runtime template
-- create any number of osg-test containers by reusing the same compose file with different:
-  - compose project names
-  - container names
-  - hostnames / network aliases
-  - workspace / runtime volume names
-  - workdir values
-  - SSH enable / password values
+## 使用方式
 
-Current live instances were created from that template with different runtime parameters instead of hardcoding a fixed container count into compose.
-
-## Workspace Layout
-
-- `.opencode/` — workspace-local OpenCode config, local tools, and installed skills
-- `.config/nextcloud_mcp.json` — Nextcloud MCP account config referenced by the workspace
-- `OpenSessionGateway/` — main OpenSessionGateway codebase
-- `Yeamika/` — local OpenCode forks / worktrees used in this lab
-- `nextcloud-mcp-tool/` — local Nextcloud MCP server source
-- `agent-skills/` — skill and prompt experiments for agent workflows
-- `tmp/` — disposable artifacts and staging output
-
-## Workspace Git Layout
-
-The workspace root now has a **local meta repo** at `/workspace/OSG-Project/.git`.
-
-- root git tracks workspace-level memory and local agent assets only
-- child project repos keep their own source history
-- root `AGENTS.md` is the workspace memory baseline
-- child `AGENTS.md` files are scoped memory for their own repo / directory subtree
-- use `WORKSPACE_MAP.md` to determine which repo owns a path and which git history to read
-
-The root meta repo intentionally ignores:
-
-- child repos under `OpenSessionGateway/`, `nextcloud-mcp-tool/`, and `Yeamika/`
-- local account/runtime state under `.config/`, `.workerspace/`, and `tmp/`
-- local bundle artifacts at the workspace root
-
-## Workspace Automation
-
-Project-level OpenCode config lives in `.opencode/opencode.json`.
-
-### MCP Servers
-
-- `osg_ssh` — SSH access to `osg-test`, `osg-test-2`, and `osg-test-3`
-- `nextcloud` — launches `nextcloud-mcp-tool/dist/index.js` with `NEXTCLOUD_MCP_CONFIG=/workspace/OSG-Project/.config/nextcloud_mcp.json`
-
-### Local Skills
-
-- `neat-freak` — end-of-session knowledge cleanup for `README.md`, project instructions, and related workspace docs; trigger with `/neat`, `整理一下`, or `同步一下`
-- `verdaccio-publish` — legacy Verdaccio publish entrypoint
-- `verdaccio-publish-opencode` — publish OpenCode packages to the local Verdaccio registry
-- `verdaccio-publish-osg` — publish OpenSessionGateway packages to the local Verdaccio registry
-
-After changing workspace-level config, documentation, or skill inventory, run `neat-freak` to keep root docs and agent instructions aligned.
+- 根 `AGENTS.md` 负责 workspace 级记忆
+- `.opencode/AGENTS.md` 负责 OpenCode 元目录说明
+- `.opencode/docx/` 负责长文档、配置方法与示例
+- 目录级动态任务清单使用 `TASKS.md`，不写进 `AGENTS.md`
