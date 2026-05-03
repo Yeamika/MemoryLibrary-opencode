@@ -17,3 +17,6 @@
 - `.opencode/` 是一个可热重载的上下文系统。
 - `opencode.json` 不允许直接更改，必须通过可信接口修改。
 - `agent/`、`skills/`、`tools/` 中的内容属于这个上下文系统的一部分。
+- 使用 `.opencode/` 时，按元资产目录处理：配置放配置位、文档放文档位、agent/skill/tool 放各自定义位。
+- 修改 `.opencode/` 下的核心内容前，先明确目的、影响范围与对应元资产。
+- 运行产物、打包文件、下载 artifacts 与测试输出统一放在 workspace 根目录 `.tmp/`。
