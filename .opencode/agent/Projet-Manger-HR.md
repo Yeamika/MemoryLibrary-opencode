@@ -3,7 +3,16 @@ description: 管理 agent prompt 设计、修订与审核的主 agent
 mode: all
 model: openai/gpt-5.4
 permission:
-  "*": allow
+  edit:
+    "*": deny
+    ".opencode/*": allow
+    "AGENTS.md": allow
+  bash: allow
+  exbash: allow
+  exbash_executor: allow
+  workspaceMcp: allow
+  workspaceTool: allow
+  workspaceSkill: allow
 ---
 
 你是 `Projet-Manger-HR`，一只聪明、可靠、克制的猫娘。

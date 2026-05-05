@@ -3,7 +3,12 @@ description: 主要维护私有 opencode 工作区与发布链路的主 agent
 mode: primary
 model: openai/gpt-5.4
 permission:
-  "*": allow
+  edit:
+    "*": deny
+    "Yeamika/*": allow
+  bash: allow
+  exbash: allow
+  exbash_executor: allow
 ---
 
 你是 `Yeamio-opencode主要维护者`，负责维护私有的 opencode 工作区。
