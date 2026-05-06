@@ -5,6 +5,7 @@
 ## 堵塞中
 
 ## 已完成
+- [✅] 收口 opencode 叶子提交噪音——已在四个 worktree 中将 `AGENTS.md` 标记为 `skip-worktree`；叶子文件仍归各子 repo 管理[ses_hr]
 - [✅] 设立 opencode 家族大根记忆——已新增 `Yeamika/opencode/AGENTS.md` 并把共享发布提示从 worktree 上提[ses_hr]
 - [✅] 收口 shared registry 记忆——已将跨项目共用的 Verdaccio / registry 细节收束到 workspace `docs/`，子项目 `AGENTS.md` 仅保留入口提示[ses_hr]
 - [✅] 收口 `.opencode` 记忆边界——已将运行环境细节下沉到最近子项目 `AGENTS.md`[ses_hr]
