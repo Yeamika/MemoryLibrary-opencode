@@ -8,6 +8,7 @@
 
 - 根 `AGENTS.md`
 - 根 `README.md`
+- `docs/`
 - `WORKSPACE_MAP.md`
 - `.opencode/AGENTS.md`
 - `.opencode/docx/`
@@ -26,6 +27,7 @@
 | Path | Git owner | Memory source | Notes |
 |---|---|---|---|
 | workspace root docs | root meta repo | root `AGENTS.md` | workspace 级规则与记忆 |
+| `docs/` | root meta repo | root `AGENTS.md` → `docs/AGENTS.md` | workspace 级共享运行说明、跨项目基础设施文档 |
 | `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
 | `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
 | child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |

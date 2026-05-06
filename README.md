@@ -6,6 +6,7 @@
 
 - 维护根级 `AGENTS.md` 记忆
 - 维护 `WORKSPACE_MAP.md` 的路径 / repo / memory 归属说明
+- 维护 `docs/` 下的 workspace 级共享运行说明
 - 维护 `.opencode/` 下的 OpenCode 元目录与客户端文档
 
 ## 典型结构
@@ -14,6 +15,7 @@
 /
 ├── AGENTS.md
 ├── README.md
+├── docs/
 ├── WORKSPACE_MAP.md
 └── .opencode/
     ├── AGENTS.md
@@ -32,6 +34,7 @@
 ## 使用方式
 
 - 根 `AGENTS.md` 负责 workspace 级记忆
+- `docs/` 负责 workspace 级共享运行说明与非 OpenCode 客户端专题文档
 - `.opencode/AGENTS.md` 负责 OpenCode 元目录说明
 - `.opencode/docx/` 负责长文档、配置方法与示例
 - 目录级动态任务清单使用 `TASKS.md`，不写进 `AGENTS.md`
