@@ -3,74 +3,41 @@
 ## 作用范围
 
 - 适用于当前 workspace 根目录。
-- 这里是一个 workspace meta repo，用于维护工作区记忆与 `.opencode/` 元资产，不是单一产品源码目录。
-- 具体实现变更优先放到对应子项目中完成；子项目保留各自 git 历史。
+- 这里是 workspace meta repo，用于维护工作区记忆、目录地图与 `.opencode/` 元资产，不是单一产品源码目录。
+- 具体实现变更优先放到对应子项目中完成；子项目保留各自本地规则与历史。
 
-## `.opencode/` 文件夹
+## `AGENTS.md` 记忆链
 
-- `.opencode/` 是当前 OpenCode workspace 的元资产目录，也是一个可热重载的上下文系统。
-- 这里用于存放工作区级的 agent、skills、tools、文档与运行时配置。
-- 维护 `.opencode/` 时，应先确认目标是其中的已知元资产，再按该元资产的职责边界进行修改。
-- 具体目录说明见 `.opencode/AGENTS.md`。
+- `AGENTS.md` 是作用域记忆，不是普通说明文档。
+- 读取时按父 → 子渐进式披露；越靠近当前目标目录，优先级越高。
+- 根 `AGENTS.md` 只保留跨 workspace 的通用基线。
+- 项目或目录专属的结构、命令、发布、测试、运行和边界规则，应写进最近作用域的子 `AGENTS.md`。
+- 如果某个目录已经形成稳定局部约束但还没有 `AGENTS.md`，应直接在该目录创建，不要继续堆到父级记忆里。
 
-## `AGENTS.md` 树（渐进式披露）
+## 对所有 agents 的统一要求
 
-```text
-AGENTS.md
-└── .opencode/AGENTS.md
-    └── .opencode/docx/AGENTS.md
-```
+- 先确认当前任务实际落在哪个目录，再沿该路径读取对应的 `AGENTS.md` 链。
+- 如果需要跨出当前作用域进入另一个子树，先说明目标目录与原因，再继续执行。
+- 实现改动优先改对应子项目；workspace 根目录主要维护共享记忆、目录地图、`.opencode/` 元资产和跨项目协调信息。
+- 结构、边界、稳定流程发生变化时，更新最近作用域的 `AGENTS.md`；动态进度写入对应目录的 `TASKS.md`，不要写进 `AGENTS.md`。
+- 长说明、专题文档、示例和上手资料应放到 `README.md`、`docs/` 或 `.opencode/docx/`，不要把长文塞进根记忆。
+- 不在已提交的 `AGENTS.md`、`README.md`、`docs/`、`.opencode/` 中写入凭据、token 或其他敏感信息。
+- 临时输出、下载制品、测试结果和打包产物默认放在根目录 `.tmp/`；如果子项目有自己的运行或产物目录，以最近作用域 `AGENTS.md` 为准。
 
-- 根 `AGENTS.md`：workspace 总记忆。
-- `.opencode/AGENTS.md`：OpenCode 元目录记忆。
-- `.opencode/docx/AGENTS.md`：OpenCode 长文档与 demo 记忆。
-- 读取时按父 → 子渐进式披露，越近越具体。
+## 工作区元资产
 
-## `AGENTS.md` 作为记忆
-
-- `AGENTS.md` 是当前作用域的记忆文件，不是普通说明文档。
-- 结构、边界、流程、命名约定变化时，应同步更新对应作用域的 `AGENTS.md`。
-- 长说明与实例优先放 `.opencode/docx/`。
-
-## 活动边界
-
-- 默认只在记忆图书馆核心区工作：根 `AGENTS.md`、根 `README.md`、`WORKSPACE_MAP.md`、`.opencode/`。
-- `OpenSessionGateway/`、`Yeamika/`、`nextcloud-mcp-tool/` 属于子项目或外部工作区；除非任务明确要求，否则不要进入这些目录修改内容。
-- `Yeamika/opencode/pr-reload/packages/opencode/migration/` 是 opencode 子项目的数据库迁移目录，按子项目内容处理。
-- `.config/`、`.tmp/`、`.opencode/artifacts/` 和根目录打包产物按本地运行态或临时产物处理。
-- 运行产物、打包文件、下载的 artifacts、测试输出等临时内容，默认统一放在根目录 `.tmp/`。
-- 如果任务需要跨出记忆图书馆核心区，应先说明将进入哪个目录、为什么需要进入，再继续执行。
+- `.opencode/` 是当前 workspace 的运行时与元资产目录；具体规则见 `.opencode/AGENTS.md`。
+- `WORKSPACE_MAP.md` 用于记录顶层目录和工作区地图；目录专属细则不要继续堆回根 `AGENTS.md`。
 
 ## `TASKS.md`
 
 - `TASKS.md` 用于当前目录的动态任务清单，不属于稳定记忆。
-- 需要共享任务进度时，应在对应目录维护 `TASKS.md`，并按“进行中 / 堵塞中 / 已完成 / 待处理”组织。
-- agent 开始该目录工作前，应先更新对应 `TASKS.md`；完成后及时同步状态。
-- 不把动态任务清单写进 `AGENTS.md`，避免污染会被自动注入的上下文。
-- 推荐条目模板：`[logo]任务标题——当前状态[ses_xxx]`
-- 其中 `[ses_xxx]` 表示当前占线、正在执行或最后更新该条目的会话。
-- 推荐 `logo`：`[🔄]` 进行中、`[⛔]` 堵塞中、`[✅]` 已完成、`[⏳]` 待处理。
-- `[🔄]` 进行中任务只需要更新 `TASKS.md` 占位即可，不要求立即 commit。
-- `[⛔]` 堵塞中、`[✅]` 已完成、`[⏳]` 待处理任务在更新 `TASKS.md` 后应提交一次 commit，并在 commit 中写明原因、结果或待处理说明。
-
-```md
-# 任务清单
-
-## 进行中
-- [🔄] 编写测试脚本——正在进行中[ses_xxx]
-
-## 堵塞中
-- [⛔] 编写测试脚本——等待测试环境恢复[ses_xxx]
-
-## 已完成
-- [✅] 编写测试脚本——已完成并通过验证[ses_xxx]
-
-## 待处理
-- [⏳] 编写测试脚本——待处理[ses_xxx]
-```
+- 需要共享任务进度时，应在对应目录维护 `TASKS.md`，按“进行中 / 堵塞中 / 已完成 / 待处理”组织。
+- `[🔄]` 进行中任务可先占位，不要求立即 commit。
+- `[⛔]`、`[✅]`、`[⏳]` 状态更新后应提交一次 commit，并写明原因、结果或待处理说明。
 
 ## Git 提交
 
 - 根 meta repo 只跟踪 workspace 级记忆与 `.opencode/` 元资产。
-- 每次有意义的更改后，都可以单独提交一次 commit。
+- 每次有意义的更改后，可以单独提交一次 commit。
 - 提交时默认使用当前 agent 名称作为提交身份；如果当前环境不能单独设置 author，至少在 commit message 中显式带上 agent 名称。
