@@ -40,6 +40,11 @@
 /OpenSessionGateway/
 /nextcloud-mcp-tool/
 /Yeamika/
+!/Yeamika/
+/Yeamika/*
+!/Yeamika/opencode/
+/Yeamika/opencode/*
+!/Yeamika/opencode/AGENTS.md
 /migration/
 /osg-opencode-plugin-bundle.tgz
 /osg-plugin-bundle.tar.gz

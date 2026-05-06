@@ -5,6 +5,7 @@
 ## 堵塞中
 
 ## 已完成
+- [✅] 设立 opencode 家族大根记忆——已新增 `Yeamika/opencode/AGENTS.md` 并把共享发布提示从 worktree 上提[ses_hr]
 - [✅] 收口 shared registry 记忆——已将跨项目共用的 Verdaccio / registry 细节收束到 workspace `docs/`，子项目 `AGENTS.md` 仅保留入口提示[ses_hr]
 - [✅] 收口 `.opencode` 记忆边界——已将运行环境细节下沉到最近子项目 `AGENTS.md`[ses_hr]
 - [✅] 收口 AGENTS 记忆层级——已将根规则收束为全局基线，并把项目细则下沉到更近的子目录 AGENTS[ses_hr]

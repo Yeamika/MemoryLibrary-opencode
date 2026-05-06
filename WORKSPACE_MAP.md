@@ -12,6 +12,7 @@
 - `WORKSPACE_MAP.md`
 - `.opencode/AGENTS.md`
 - `.opencode/docx/`
+- `Yeamika/opencode/AGENTS.md`（opencode 家族共享记忆锚点）
 - 需要保留的空目录占位（如 `.gitkeep`）
 
 其他仍然出现在 workspace 根目录的子项目目录、本地配置目录、运行态目录或打包产物，不属于根 meta repo 的维护主线。
@@ -30,8 +31,9 @@
 | `docs/` | root meta repo | root `AGENTS.md` → `docs/AGENTS.md` | workspace 级共享运行说明、跨项目基础设施文档 |
 | `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
 | `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
+| `Yeamika/opencode/` | root meta repo（memory anchor only） | root `AGENTS.md` → `Yeamika/opencode/AGENTS.md` | opencode 家族共享记忆锚点；具体 worktree 继续读取更近的子 `AGENTS.md` |
 | child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |
-| `Yeamika/opencode/pr-reload/packages/opencode/migration/` | `Yeamika/opencode` child repo | child repo `AGENTS.md` 链 | opencode 数据库迁移目录 |
+| `Yeamika/opencode/pr-reload/packages/opencode/migration/` | `Yeamika/opencode` child repo | root `AGENTS.md` → `Yeamika/opencode/AGENTS.md` → child repo `AGENTS.md` 链 | opencode 数据库迁移目录 |
 | `.config/`、`.tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |
 
 ## 使用规则
