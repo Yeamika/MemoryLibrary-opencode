@@ -1,7 +1,7 @@
 ---
 description: Push the current branch, watch GitHub Actions, download artifacts, and publish to local Verdaccio
 mode: subagent
-model: zai/glm-5.1
+model: opencode-go/glm-5.1
 permission:
   "*": deny
   bash: allow

@@ -1,7 +1,7 @@
 ---
 description: 在本地测试环境中安装或更新目标版本，并验证安装结果
 mode: subagent
-model: zai/glm-5.1
+model: opencode-go/glm-5.1
 permission:
   "*": deny
   bash: allow

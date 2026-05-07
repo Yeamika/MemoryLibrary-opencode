@@ -1,7 +1,7 @@
 ---
 description: 管理和检查测试容器状态、拓扑与基础运行信息
 mode: subagent
-model: zai/glm-5.1
+model: opencode-go/glm-5.1
 permission:
   "*": deny
   bash: allow
