@@ -32,6 +32,7 @@
 | `.opencode/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` | OpenCode 元目录 |
 | `.opencode/docx/` | root meta repo | root `AGENTS.md` → `.opencode/AGENTS.md` → `.opencode/docx/AGENTS.md` | 长文档、示例、配置说明 |
 | `Yeamika/opencode/` | root meta repo（memory anchor only） | root `AGENTS.md` → `Yeamika/opencode/AGENTS.md` | opencode 家族共享记忆锚点；具体 worktree 继续读取更近的子 `AGENTS.md` |
+| `GlassVein/` | child project / local spike | root `AGENTS.md` → `GlassVein/AGENTS.md` | OSG 风格分层会话路由核心实验项目；源码不归根 meta repo 跟踪 |
 | child project repo | child repo | child repo 自己的 `AGENTS.md` 链 | 产品实现与项目内记忆 |
 | `Yeamika/opencode/pr-reload/packages/opencode/migration/` | `Yeamika/opencode` child repo | root `AGENTS.md` → `Yeamika/opencode/AGENTS.md` → child repo `AGENTS.md` 链 | opencode 数据库迁移目录 |
 | `.config/`、`.tmp/` | local-only | n/a | 本地配置、运行态与临时产物 |

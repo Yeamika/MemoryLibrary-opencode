@@ -30,6 +30,12 @@
 - `.opencode/` 是当前 workspace 的运行时与元资产目录；具体规则见 `.opencode/AGENTS.md`。
 - `WORKSPACE_MAP.md` 用于记录顶层目录和工作区地图；目录专属细则不要继续堆回根 `AGENTS.md`。
 
+## OSG 旧代码边界
+
+- 旧 OSG 代码线已标记为弃用；不要继续在旧 OSG 工程里做产品代码改动或新功能开发。
+- 新功能、修复和验证应落到对应独立项目，当前 GlassVein 相关工作统一进入 `GlassVein/` 子 repo 与 `glassvein` 分支。
+- 旧 OSG 分支或目录仅作历史参考；如需读取，先说明目的，默认不写入。
+
 ## Git 提交
 
 - 根 meta repo 只跟踪 workspace 级记忆与 `.opencode/` 元资产。

@@ -10,6 +10,7 @@
 # Root docs / memory
 !/.gitignore
 !/AGENTS.md
+!/LICENSE
 !/README.md
 !/TASKS.md
 !/WORKSPACE_MAP.md
@@ -19,6 +20,7 @@
 # Workspace-local OpenCode meta files (but not runtime config or artifacts)
 !/.opencode/
 /.opencode/*
+!/.opencode/opencode.json
 !/.opencode/AGENTS.md
 !/.opencode/agent/
 !/.opencode/agent/**
