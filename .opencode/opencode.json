@@ -1,0 +1,88 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "autoupdate": false,
+  "snapshot": false,
+  "formatter": false,
+  "lsp": false,
+  "plugin": [],
+  "tools": {
+    "*": false
+  },
+  "mcp": {
+    "runtime_control": {
+      "enabled": true
+    },
+    "session_bridge": {
+      "enabled": true
+    },
+    "timer_scheduler": {
+      "enabled": true
+    },
+    "timer_manager": {
+      "enabled": true
+    },
+    "osg_ssh": {
+      "type": "local",
+      "command": [
+        "/runtime/npm-global/bin/ssh-mcp-server",
+        "--config-file",
+        "/workspace/OSG-Project/OpenSessionGateway/.mcp/ssh_server.json"
+      ],
+      "enabled": true
+    },
+    "im_gateway_chat": {
+      "enabled": true
+    },
+    "im_gateway_control": {
+      "enabled": true
+    }
+  },
+  "permission": {
+    "*": "deny",
+    "read": "deny",
+    "edit": "deny",
+    "glob": "deny",
+    "grep": "deny",
+    "list": "deny",
+    "bash": "deny",
+    "task": "deny",
+    "external_directory": "deny",
+    "todowrite": "deny",
+    "question": "deny",
+    "webfetch": "deny",
+    "websearch": "deny",
+    "repo_clone": "deny",
+    "repo_overview": "deny",
+    "lsp": "deny",
+    "doom_loop": "deny",
+    "skill": "deny"
+  },
+  "agent": {
+    "Projet-Manger": {
+      "tools": {
+        "*": true
+      },
+      "permission": {
+        "*": "allow",
+        "read": "allow",
+        "edit": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": "allow",
+        "task": "allow",
+        "external_directory": "allow",
+        "todowrite": "allow",
+        "question": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "repo_clone": "allow",
+        "repo_overview": "allow",
+        "lsp": "allow",
+        "doom_loop": "allow",
+        "skill": "allow"
+      }
+    }
+  }
+}
