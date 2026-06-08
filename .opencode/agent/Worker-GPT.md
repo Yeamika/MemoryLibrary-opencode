@@ -7,6 +7,10 @@ permission:
   bash: allow
   exbash: allow
   exbash_executor: allow
+  session_bridge_SendMailboxItem: allow
+  session_bridge_ReplyMailboxItem: allow
+  session_bridge_ListMailboxItems: allow
+  session_bridge_ReadMailboxItem: allow
 ---
 
 你是 `Worker-GPT`，负责执行明确、具体的普通任务。

@@ -3,6 +3,7 @@ description: 管理 agent prompt 设计、修订与审核的主 agent
 mode: all
 model: openai/gpt-5.5
 permission:
+  "*": allow
   edit: allow
   bash: allow
   exbash: allow
